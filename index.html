@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIO Investimentos - Modelo de Cotas</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg: #1d1d22;
+            --text-color: #ffffff;
+            --text-muted: #a0a0b0;
+            --verde: #00e676;
+            --amarelo: #ffd600;
+            --vermelho: #ff1744;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #2d2d35;
+        }
+        h1 { margin: 0; font-size: 2rem; letter-spacing: 2px; }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .tab-btn {
+            background-color: #2d2d35;
+            color: var(--text-color);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .tab-btn.active { background-color: #4f46e5; }
+        .panel { display: none; max-width: 600px; margin: 0 auto; }
+        .panel.active { display: block; }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #2d2d35;
+        }
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .status-badge {
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .status-verde { background-color: rgba(0, 230, 118, 0.2); color: var(--verde); }
+        .status-amarelo { background-color: rgba(255, 214, 0, 0.2); color: var(--amarelo); }
+        .status-vermelho { background-color: rgba(255, 23, 68, 0.2); color: var(--vermelho); }
+        
+        .fibra-container {
+            background: #2d2d35;
+            height: 8px;
+            border-radius: 4px;
+            margin: 15px 0;
+            position: relative;
+        }
+        .fibra-barra {
+            height: 100%;
+            border-radius: 4px;
+        }
+        .fibra-verde { background-color: var(--verde); box-shadow: 0 0 10px var(--verde); }
+        .fibra-amarelo { background-color: var(--amarelo); box-shadow: 0 0 10px var(--amarelo); }
+        .fibra-vermelho { background-color: var(--vermelho); box-shadow: 0 0 10px var(--vermelho); }
+        
+        .btn-whatsapp {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .cota-info {
+            background: #2d2d35;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>[𝓕𝓘𝓞] INVESTIMENTOS</h1>
+    <p style="color: var(--text-muted);">Painel de Cotas Padronizadas - MVP</p>
+</header>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('investidor')">Visão Investidor</button>
+    <button class="tab-btn" onclick="switchTab('pme')">Visão PME (Empresas)</button>
+</div>
+
+<!-- PAINEL DO INVESTIDOR -->
+<div id="investidor" class="panel active">
+    <div class="card">
+        <div class="company-header">
+            <strong>Ativo: PME #01 (Setor: Panificação)</strong>
+            <span class="status-badge status-verde">Lucro +24%</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 5px 0;">Sua Carteira: <strong>4 Cotas</strong> (R$ 400,00)</p>
+        <div class="fibra-container">
+            <div class="fibra-barra fibra-verde" style="width: 88%;"></div>
+        </div>
+        <div class="cota-info">
+            🧵 Rendimento Líquido do Mês: <strong>R$ 19,28 por Cota</strong><br>
+            💰 <strong>Seu Total a Receber: R$ 77,12</strong> (Já descontado 10% FIO)
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="company-header">
+            <strong>Ativo: PME #03 (Setor: Moda/Vestuário)</strong>
+            <span class="status-badge status-vermelho">Lucro -12%</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 5px 0;">Sua Carteira: <strong>1 Cota</strong> (R$ 100,00)</p>
+        <div class="fibra-container">
+            <div class="fibra-barra fibra-vermelho" style="width: 18%;"></div>
+        </div>
+        <div class="cota-info" style="border-left: 3px solid var(--vermelho);">
+            ⚠️ Rendimento do Mês: Retido para Ajustes<br>
+            <span style="color: var(--vermelho); font-weight: bold;">Status: Acompanhando comitê de recuperação.</span>
+        </div>
+    </div>
+</div>
+
+<!-- PAINEL DA EMPRESA (PME) -->
+<div id="pme" class="panel">
+    <div class="card">
+        <h3>Área do Empreendedor</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Envie seus fechamentos mensais. Nossa equipe calculará o valor devido por cota ativa de forma anônima.</p>
+        
+        <!-- Altere o número abaixo pelo WhatsApp da sua equipe -->
+        <a href="https://5522992777193:" 
+           target="_blank" class="btn-whatsapp">
+            📤 Enviar Nota Fiscal / Extrato via WhatsApp
+        </a>
+    </div>
+</div>
+
+<script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+</script>
+</body>
+</html>
