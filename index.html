@@ -11,7 +11,6 @@
             --text-white: #ffffff;
             --text-muted: #afafaf;
             --fio-purple: #4f46e5;
-            --line-color: rgba(99, 102, 241, 0.25);
         }
         
         body { 
@@ -28,7 +27,6 @@
             position: relative;
         }
 
-        /* Ilustração do Fio passando por trás e cortando o meio do site */
         .fio-background {
             position: absolute;
             top: 0;
@@ -62,7 +60,6 @@
             margin-bottom: 50px;
         }
 
-        /* Logo FIO Grande e Imponente */
         h1 { 
             margin: 0; 
             font-size: 5rem; 
@@ -86,7 +83,6 @@
             gap: 16px;
         }
 
-        /* Botões Estilo Uber */
         .btn-uber { 
             display: flex;
             align-items: center;
@@ -128,7 +124,6 @@
 </head>
 <body>
 
-    <!-- Vetor do Fio que corta o fundo do site -->
     <div class="fio-background">
         <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100">
             <path d="M 0,20 C 30,40 40,10 70,70 C 85,95 90,80 100,50" class="fio-linha" />
@@ -142,15 +137,13 @@
         </div>
 
         <div class="action-box">
-            <!-- BOTÃO EMPRESARIAL -->
-            <a href="https://whatsapp.com." 
-               target="_blank" class="btn-uber">
+            <!-- BOTÃO EMPRESARIAL - REMOVIDO TARGET_BLANK PARA EVITAR BLOQUEIO -->
+            <a href="https://wa.me" class="btn-uber">
                 Quero Capital
             </a>
 
-            <!-- BOTÃO INVESTIDOR -->
-            <a href="https://whatsapp.com." 
-               target="_blank" class="btn-uber btn-secondary">
+            <!-- BOTÃO INVESTIDOR - REMOVIDO TARGET_BLANK PARA EVITAR BLOQUEIO -->
+            <a href="https://wa.me" class="btn-uber btn-secondary">
                 Quero Investir
             </a>
         </div>
