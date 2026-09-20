@@ -99,6 +99,9 @@
             font-size: 1.1rem; 
             text-align: center; 
             transition: background-color 0.2s, transform 0.1s;
+            cursor: pointer;
+            border: none;
+            width: 100%;
         }
 
         .btn-uber:hover {
@@ -141,19 +144,59 @@
         </div>
 
         <div class="action-box">
-            <!-- BOTÃO EMPRESARIAL COM SUA MENSAGEM CONFIGURADA -->
-            <a href="https://wa.me/5522992777193" class="btn-uber">
+            <!-- BOTÃO EMPRESARIAL -->
+            <button onclick="abrirPainelEmpresa()" class="btn-uber">
                 Quero Capital
-            </a>
+            </button>
 
-            <!-- BOTÃO INVESTIDOR COM SUA MENSAGEM CONFIGURADA -->
-            <a href="https://wa.me/5522992777193" class="btn-uber btn-secondary">
+            <!-- BOTÃO INVESTIDOR -->
+            <button onclick="abrirPainelInvestidor()" class="btn-uber btn-secondary">
                 Quero Investir
-            </a>
+            </button>
         </div>
 
         <p class="footer-text">© 2026 FIO Investimentos. Conexões operacionais blindadas.</p>
     </div>
+
+    <script>
+        const WHATSAPP_NUMERO = "5522992777193";
+
+        function abrirPainelEmpresa() {
+            const msgEmpresa = 
+                "🏢 [𝓕𝓘𝓞] • MESA CORPORATIVA\n" +
+                "----------------------------------------\n" +
+                "Olá! Seja bem-vindo à FIO.\n\n" +
+                "Analisamos o seu interesse em captar capital para reforma, ajuste ou expansão do seu negócio.\n\n" +
+                "Para darmos início à análise de viabilidade e montagem do seu portfólio blindado (onde seu nome é preservado por sigilo), por favor, responda a este formulário inicial em uma única mensagem:\n\n" +
+                "1. Nome completo do responsável:\n" +
+                "2. CNPJ e Razão Social da Empresa:\n" +
+                "3. Setor de atuação (Ex: Alimentício, Automotivo):\n" +
+                "4. Quanto de capital (R$) sua empresa precisa hoje?\n" +
+                "5. Qual foi o lucro líquido médio dos últimos 6 meses?\n\n" +
+                "⚠️ Atenção: Ao enviar, você concorda com o repasse mensal fixo de 15% do seu lucro líquido para a distribuição das cotas de seus apoiadores anônimos.\n" +
+                "----------------------------------------";
+            
+            window.location.href = "https://whatsapp.com" + WHATSAPP_NUMERO + "&text=" + encodeURIComponent(msgEmpresa);
+        }
+
+        function abrirPainelInvestidor() {
+            const msgInvestidor = 
+                "🧵 [𝓕𝓘𝓞] INVESTIMENTOS • PAINEL DO MEMBRO\n" +
+                "--------------------------------------------------\n" +
+                "Olá! Seja muito bem-vindo à rede blindada de investidores da FIO.\n\n" +
+                "Aqui, o seu capital compra cotas padronizadas de R$ 100,00 que aceleram pequenas empresas locais e retornam para você na forma de lucros recorrentes mensais (NÓS). Tudo com anonimato absoluto e segurança jurídica.\n\n" +
+                "Para navegar no seu Painel, digite apenas o NÚMERO da opção desejada:\n\n" +
+                "1️⃣ VER EMPRESAS (Ativos por Setor) e comprar cotas\n" +
+                "2️⃣ CONSULTAR SALDO de rendimentos e Nós acumulados\n" +
+                "3️⃣ SOLICITAR SAQUE imediato via Pix\n" +
+                "4️⃣ ENVIAR COMPROVANTE de investimento (Pix realizado)\n" +
+                "5️⃣ FALAR COM SUPORTE (Falar com um analista humano)\n\n" +
+                "--------------------------------------------------\n" +
+                "🔒 FIO Operações • Identidades 100% Blindadas";
+            
+            window.location.href = "https://whatsapp.com" + WHATSAPP_NUMERO + "&text=" + encodeURIComponent(msgInvestidor);
+        }
+    </script>
 
 </body>
 </html>
