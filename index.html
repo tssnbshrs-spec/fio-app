@@ -41,12 +41,13 @@
 <div class="container">
     <center><h1>[𝓕𝓘𝓞] INVESTIMENTOS</h1><p style="color: var(--text-muted);">Conexões Financeiras Blindadas</p></center>
 
-    <!-- TELA DE AUTENTICAÇÃO (CADASTRO / LOGIN) -->
+    <!-- TELA DE AUTENTICAÇÃO -->
     <div id="auth-screen" class="card">
         <h3 id="auth-title">Criar Sua Conta FIO</h3>
+        
         <div id="cadastro-inputs">
             <label>Tipo de Perfil:</label>
-            <select id="tipo-perfil" onchange="toggleCpfCnpjPlaceholder()">
+            <select id="tipo-perfil" onchange="togglePlaceholder()">
                 <option value="INVESTIDOR">Quero Investir (Investidor)</option>
                 <option value="PME">Preciso de Capital (Empresarial)</option>
             </select>
@@ -55,33 +56,26 @@
             <button onclick="realizarCadastro()">Finalizar Cadastro</button>
             <p style="text-align:center; font-size:0.9rem; color:var(--text-muted);">Já tem conta? <a href="#" onclick="toggleAuthMode(false)" style="color:var(--fio-purple);">Faça Login</a></p>
         </div>
+
         <div id="login-inputs" class="hidden">
-            <input type="text" id="login-codigo" placeholder="Seu Código de Login (Ex: PME#CPF/2026 ou ADM#FIO/2026)">
+            <input type="text" id="login-codigo" placeholder="Seu Código (Ex: PME#12345/2026)">
             <input type="password" id="login-pass" placeholder="Sua Senha">
             <button onclick="realizarLogin()">Entrar no Painel</button>
             <p style="text-align:center; font-size:0.9rem; color:var(--text-muted);">Não tem conta? <a href="#" onclick="toggleAuthMode(true)" style="color:var(--fio-purple);">Cadastre-se</a></p>
         </div>
     </div>
 
-    <!-- PAINEL ADMINISTRATIVO (ADM MASTER) -->
+    <!-- PAINEL ADM MASTER -->
     <div id="panel-adm" class="card hidden">
         <h2 style="color: var(--amarelo);">🛡️ Painel Administrativo Master</h2>
-        <p style="color:var(--text-muted);">Controle de Usuários Cadastrados na Memória Local</p>
+        <p style="color:var(--text-muted);">Controle de Usuários Cadastrados</p>
         <hr style="border-color:#2d2d35;">
-        
-        <h4>Usuários da Plataforma FIO:</h4>
         <table class="admin-table">
             <thead>
-                <tr>
-                    <th>Código / ID de Login</th>
-                    <th>Senha Cadastrada</th>
-                </tr>
+                <tr><th>Código / ID de Login</th><th>Senha</th></tr>
             </thead>
-            <tbody id="admin-users-list">
-                <!-- Inserido dinamicamente via JS -->
-            </tbody>
+            <tbody id="admin-users-list"></tbody>
         </table>
-
         <button onclick="limparBancoDados()" style="background-color: var(--vermelho); margin-top:20px;">⚠️ Resetar Todos os Cadastros</button>
         <button onclick="logout()" style="background-color:#2d2d35; margin-top:10px;">Sair do Painel</button>
     </div>
@@ -89,76 +83,84 @@
     <!-- PAINEL EMPRESARIAL (PME) -->
     <div id="panel-pme" class="card hidden">
         <h2>Painel de Controle Empresarial</h2>
-        <p style="color:var(--text-muted);" id="pme-id-display"></p>
+        <p style="color:var(--text-muted); font-weight:bold;" id="pme-id-display"></p>
         <hr style="border-color:#2d2d35;">
-        
         <h4>Métricas de Captação</h4>
         <p>👤 Investidores Alcançados: <strong>3 Apoiadores Anônimos</strong></p>
         <p>💰 Capital Total Conquistado: <strong>R\$ 700,00</strong></p>
         <p>🧵 Previsão de Repasse Mensal (15%): <strong>R\$ 150,00</strong></p>
-        
-        <h4>Apoiadores Ativos no seu Negócio (Identidade Protegida):</h4>
+        <h4>Apoiadores Ativos no seu Negócio:</h4>
         <div class="investidor-linha"><span>Apoiador #ANON-301</span><strong>R\$ 100,00</strong></div>
         <div class="investidor-linha"><span>Apoiador #ANON-942</span><strong>R\$ 200,00</strong></div>
         <div class="investidor-linha"><span>Apoiador #ANON-115</span><strong>R\$ 400,00</strong></div>
-
-        <a href="https://5522992777193." target="_blank" class="btn-whatsapp">
-            📱 Falar com o ADM (Enviar NF / Suporte)
-        </a>
+        <a href="https://5522992777193." target="_blank" class="btn-whatsapp">📱 Falar com o ADM (Enviar NF)</a>
         <button onclick="logout()" style="background-color:#2d2d35; margin-top:20px;">Sair do Painel</button>
     </div>
 
     <!-- PAINEL DO INVESTIDOR -->
     <div id="panel-investidor" class="card hidden">
         <h2>Painel do Investidor Anônimo</h2>
-        <p style="color:var(--text-muted);" id="investidor-id-display"></p>
+        <p style="color:var(--text-muted); font-weight:bold;" id="investidor-id-display"></p>
         <hr style="border-color:#2d2d35;">
-
         <h3>Empresas Disponíveis para Investimento</h3>
-
         <div class="card" style="background:#121214;">
             <span class="status-badge status-verde">Avaliação Alta</span>
             <strong>Ativo: PME #01 (Setor: Panificação)</strong>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin:5px 0;">Valor da Cota Fixa: R\$ 100,00</p>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin:5px 0;">Cota Fixa: R\$ 100,00</p>
             <div class="fibra-container"><div class="fibra-barra fibra-verde" style="width: 88%;"></div></div>
-            <a href="https://wa.me." target="_blank" class="btn-whatsapp" style="background-color:var(--fio-purple);">
-                🧵 Selecionar para Investir (Pedir Chave Pix)
-            </a>
+            <a href="https://wa.me" target="_blank" class="btn-whatsapp" style="background-color:var(--fio-purple);">🧵 Selecionar para Investir</a>
         </div>
-
-        <div class="card" style="background:#121214;">
-            <span class="status-badge status-amarelo">Avaliação Média</span>
-            <strong>Ativo: PME #02 (Setor: Oficina Automotiva)</strong>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin:5px 0;">Valor da Cota Fixa: R\$ 100,00</p>
-            <div class="fibra-container"><div class="fibra-barra fibra-amarelo" style="width: 52%;"></div></div>
-            <a href="https://wa.me." target="_blank" class="btn-whatsapp" style="background-color:var(--fio-purple);">
-                🧵 Selecionar para Investir (Pedir Chave Pix)
-            </a>
-        </div>
-
-        <a href="https://5522992777193." target="_blank" class="btn-whatsapp" style="background:#0284c7;">
-            💸 Solicitar Saque / Consultar Saldo Recorrente
-        </a>
+        <a href="https://5522992777193." target="_blank" class="btn-whatsapp" style="background:#0284c7;">💸 Solicitar Saque</a>
         <button onclick="logout()" style="background-color:#2d2d35; margin-top:20px;">Sair do Painel</button>
     </div>
 </div>
 
 <script>
-    function toggleCpfCnpjPlaceholder() {
+    function togglePlaceholder() {
         const perfil = document.getElementById('tipo-perfil').value;
         document.getElementById('auth-doc').placeholder = perfil === 'PME' ? 'Digite seu CNPJ' : 'Digite seu CPF';
     }
     function toggleAuthMode(isCadastro) {
-        document.getElementById('auth-title').innerText = isCadastro ? 'Criar Sua Conta FIO' : 'Acessar Conta FIO';
         document.getElementById('cadastro-inputs').classList.toggle('hidden', !isCadastro);
         document.getElementById('login-inputs').classList.toggle('hidden', isCadastro);
+        document.getElementById('auth-title').innerText = isCadastro ? 'Criar Sua Conta FIO' : 'Acessar Conta FIO';
     }
     function realizarCadastro() {
         const perfil = document.getElementById('tipo-perfil').value;
         const doc = document.getElementById('auth-doc').value.replace(/\D/g, '');
         const pass = document.getElementById('auth-pass').value;
-        if(!doc || !pass) return alert('Preencha todos os campos!');
+        if(!doc || !pass) { alert('Preencha todos os campos!'); return; }
         
-        const codigoGerado = `${perfil}#${doc}/2026`;
-        localStorage.setItem(codigoGerado, JSON.stringify({ perfil, pass }));
-        alert(`Cadastro Realizado! Guarde seu código de login:\n\n${codigoGerado}`);
+        const codigoGerado = perfil + '#' + doc + '/2026';
+        const objetoUsuario = { perfil: perfil, pass: pass };
+        localStorage.setItem(codigoGerado, JSON.stringify(objetoUsuario));
+        
+        alert('Cadastro Realizado!\n\nSeu Código de Login é:\n' + codigoGerado);
+        toggleAuthMode(false);
+        document.getElementById('login-codigo').value = codigoGerado;
+        document.getElementById('login-pass').value = '';
+    }
+    function realizarLogin() {
+        const codigo = document.getElementById('login-codigo').value.trim();
+        const pass = document.getElementById('login-pass').value.trim();
+
+        if(codigo === "ADM#FIO/2026" && pass === "fioadmin123") {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('panel-adm').classList.remove('hidden');
+            carregarUsuariosNoPainelAdm();
+            return;
+        }
+
+        const stringConta = localStorage.getItem(codigo);
+        if(!stringConta) { alert('Código ou senha incorretos!'); return; }
+        
+        try {
+            const conta = JSON.parse(stringConta);
+            if(conta.pass !== pass) { alert('Código ou senha incorretos!'); return; }
+            
+            document.getElementById('auth-screen').classList.add('hidden');
+            if(conta.perfil === 'PME') {
+                document.getElementById('panel-pme').classList.remove('hidden');
+                document.getElementById('pme-id-display').innerText = 'ID Oficial: ' + codigo;
+            } else {
+                document.getElementById('panel-investidor').classList.remove('hidden');
