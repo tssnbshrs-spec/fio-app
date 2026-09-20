@@ -32,6 +32,9 @@
         .status-verde { background-color: rgba(0, 230, 118, 0.2); color: var(--verde); }
         .status-amarelo { background-color: rgba(255, 214, 0, 0.2); color: var(--amarelo); }
         .investidor-linha { display: flex; justify-content: space-between; border-bottom: 1px solid #2d2d35; padding: 8px 0; font-size: 0.9rem; }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.85rem; }
+        .admin-table th, .admin-table td { border: 1px solid #2d2d35; padding: 10px; text-align: left; }
+        .admin-table th { background-color: #2d2d35; }
     </style>
 </head>
 <body>
@@ -53,11 +56,34 @@
             <p style="text-align:center; font-size:0.9rem; color:var(--text-muted);">Já tem conta? <a href="#" onclick="toggleAuthMode(false)" style="color:var(--fio-purple);">Faça Login</a></p>
         </div>
         <div id="login-inputs" class="hidden">
-            <input type="text" id="login-codigo" placeholder="Seu Código de Login (Ex: PME#CPF/2026)">
+            <input type="text" id="login-codigo" placeholder="Seu Código de Login (Ex: PME#CPF/2026 ou ADM#FIO/2026)">
             <input type="password" id="login-pass" placeholder="Sua Senha">
             <button onclick="realizarLogin()">Entrar no Painel</button>
             <p style="text-align:center; font-size:0.9rem; color:var(--text-muted);">Não tem conta? <a href="#" onclick="toggleAuthMode(true)" style="color:var(--fio-purple);">Cadastre-se</a></p>
         </div>
+    </div>
+
+    <!-- PAINEL ADMINISTRATIVO (ADM MASTER) -->
+    <div id="panel-adm" class="card hidden">
+        <h2 style="color: var(--amarelo);">🛡️ Painel Administrativo Master</h2>
+        <p style="color:var(--text-muted);">Controle de Usuários Cadastrados na Memória Local</p>
+        <hr style="border-color:#2d2d35;">
+        
+        <h4>Usuários da Plataforma FIO:</h4>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Código / ID de Login</th>
+                    <th>Senha Cadastrada</th>
+                </tr>
+            </thead>
+            <tbody id="admin-users-list">
+                <!-- Inserido dinamicamente via JS -->
+            </tbody>
+        </table>
+
+        <button onclick="limparBancoDados()" style="background-color: var(--vermelho); margin-top:20px;">⚠️ Resetar Todos os Cadastros</button>
+        <button onclick="logout()" style="background-color:#2d2d35; margin-top:10px;">Sair do Painel</button>
     </div>
 
     <!-- PAINEL EMPRESARIAL (PME) -->
@@ -76,7 +102,6 @@
         <div class="investidor-linha"><span>Apoiador #ANON-942</span><strong>R\$ 200,00</strong></div>
         <div class="investidor-linha"><span>Apoiador #ANON-115</span><strong>R\$ 400,00</strong></div>
 
-        <!-- WHATSAPP ADM EMPRESA -->
         <a href="https://5522992777193." target="_blank" class="btn-whatsapp">
             📱 Falar com o ADM (Enviar NF / Suporte)
         </a>
@@ -91,7 +116,6 @@
 
         <h3>Empresas Disponíveis para Investimento</h3>
 
-        <!-- Empresa Ativo 1 -->
         <div class="card" style="background:#121214;">
             <span class="status-badge status-verde">Avaliação Alta</span>
             <strong>Ativo: PME #01 (Setor: Panificação)</strong>
@@ -102,7 +126,6 @@
             </a>
         </div>
 
-        <!-- Empresa Ativo 2 -->
         <div class="card" style="background:#121214;">
             <span class="status-badge status-amarelo">Avaliação Média</span>
             <strong>Ativo: PME #02 (Setor: Oficina Automotiva)</strong>
@@ -113,7 +136,6 @@
             </a>
         </div>
 
-        <!-- WHATSAPP SAQUE INVESTIDOR -->
         <a href="https://5522992777193." target="_blank" class="btn-whatsapp" style="background:#0284c7;">
             💸 Solicitar Saque / Consultar Saldo Recorrente
         </a>
@@ -140,26 +162,3 @@
         const codigoGerado = `${perfil}#${doc}/2026`;
         localStorage.setItem(codigoGerado, JSON.stringify({ perfil, pass }));
         alert(`Cadastro Realizado! Guarde seu código de login:\n\n${codigoGerado}`);
-        toggleAuthMode(false);
-        document.getElementById('login-codigo').value = codigoGerado;
-    }
-    function realizarLogin() {
-        const codigo = document.getElementById('login-codigo').value;
-        const pass = document.getElementById('login-pass').value;
-        const conta = JSON.parse(localStorage.getItem(codigo));
-        
-        if(!conta || conta.pass !== pass) return alert('Código ou senha incorretos!');
-        
-        document.getElementById('auth-screen').classList.add('hidden');
-        if(conta.perfil === 'PME') {
-            document.getElementById('panel-pme').classList.remove('hidden');
-            document.getElementById('pme-id-display').innerText = `ID Oficial Logado: ${codigo}`;
-        } else {
-            document.getElementById('panel-investidor').classList.remove('hidden');
-            document.getElementById('investidor-id-display').innerText = `ID Investidor: ${codigo}`;
-        }
-    }
-    function logout() { location.reload(); }
-</script>
-</body>
-</html>
