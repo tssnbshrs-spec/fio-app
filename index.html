@@ -144,14 +144,22 @@
         </div>
 
         <div class="action-box">
-            <!-- MUDANÇA DA URL BASE PARA API.WHATSAPP CONTRA BLOQUEIOS DE CACHE DO NAVEGADOR -->
-            <a href="https://whatsapp.com." target="_blank" class="btn-uber">
-                Quero Capital
-            </a>
+            <!-- BOTÕES QUE USAM FORMULÁRIOS INVISÍVEIS PARA FORÇAR REDIRECIONAMENTO LIMPO -->
+            <form action="https://whatsapp.com" method="GET" target="_blank">
+                <input type="hidden" name="phone" value="5522992777193">
+                <input type="hidden" name="text" value="Olá! Acessei o site da FIO e gostaria de cadastrar minha empresa na Mesa Corporativa.">
+                <button type="submit" class="btn-uber">
+                    Quero Capital
+                </button>
+            </form>
 
-            <a href="https://whatsapp.com." target="_blank" class="btn-uber btn-secondary">
-                Quero Investir
-            </a>
+            <form action="https://whatsapp.com" method="GET" target="_blank">
+                <input type="hidden" name="phone" value="5522992777193">
+                <input type="hidden" name="text" value="Olá! Acessei o site da FIO e gostaria de acessar o Painel do Investidor.">
+                <button type="submit" class="btn-secondary btn-uber">
+                    Quero Investir
+                </button>
+            </form>
         </div>
 
         <p class="footer-text">© 2026 FIO Investimentos. Conexões operacionais blindadas.</p>
