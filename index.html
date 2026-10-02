@@ -144,44 +144,18 @@
         </div>
 
         <div class="action-box">
-            <button onclick="redirecionarParaMesa('Mesa')" class="btn-uber">
+            <!-- LINKS 100% ESTÁTICOS E NATIVOS CONTRA TRAVAMENTOS E ERROS DE CACHE DO NAVEGADOR -->
+            <a href="https://wa.me." target="_blank" class="btn-uber">
                 Quero Capital
-            </button>
+            </a>
 
-            <button onclick="redirecionarParaMesa('Investidor')" class="btn-uber btn-secondary">
+            <a href="https://wa.me." target="_blank" class="btn-uber btn-secondary">
                 Quero Investir
-            </button>
+            </a>
         </div>
 
         <p class="footer-text">© 2026 FIO Investimentos. Conexões operacionais blindadas.</p>
     </div>
-
-    <script>
-        function redirecionarParaMesa(perfilMembro) {
-            var telefoneFioInvestimentos = "5522992777193";
-            var mensagemGatilho = "";
-
-            if (perfilMembro === "Mesa") {
-                mensagemGatilho = "Olá! Acessei o site da FIO e gostaria de cadastrar minha empresa na Mesa Corporativa.";
-            } else {
-                mensagemGatilho = "Olá! Acessei o site da FIO e gostaria de acessar o Painel do Investidor.";
-            }
-
-            // Identifica o tipo de dispositivo (Celular ou Computador) de forma nativa
-            var checarSeEMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            var urlDestinoFinal = "";
-
-            if (checarSeEMobile) {
-                // Link universal ideal para smartphones (Abre o aplicativo nativo na hora)
-                urlDestinoFinal = "https://wa.me" + telefoneFioInvestimentos + "?text=" + encodeURIComponent(mensagemGatilho);
-            } else {
-                // Link específico de engenharia para computadores (Pula a tela de marketing e abre o chat do WhatsApp Web direto)
-                urlDestinoFinal = "https://whatsapp.com" + telefoneFioInvestimentos + "&text=" + encodeURIComponent(mensagemGatilho);
-            }
-
-            window.open(urlDestinoFinal, '_blank');
-        }
-    </script>
 
 </body>
 </html>
