@@ -85,7 +85,7 @@
             gap: 16px;
         }
 
-        /* Botoes Estilo Uber convertidos para Links Universais wa.me */
+        /* Botoes Estilo Uber */
         .btn-uber { 
             display: flex;
             align-items: center;
@@ -144,18 +144,46 @@
         </div>
 
         <div class="action-box">
-            <!-- LINKS DIRETOS PELO FORMATO OFICIAL WA.ME SEM CONFLITOS DE JAVASCRIPT -->
-            <a href="https://wa.me" class="btn-uber">
+            <button onclick="dispararWhatsApp('Mesa Corporativa')" class="btn-uber">
                 Quero Capital
-            </a>
+            </button>
 
-            <a href="https://wa.me" class="btn-uber btn-secondary">
+            <button onclick="dispararWhatsApp('Painel do Membro')" class="btn-uber btn-secondary">
                 Quero Investir
-            </a>
+            </button>
         </div>
 
         <p class="footer-text">© 2026 FIO Investimentos. Conexões operacionais blindadas.</p>
     </div>
+
+    <script>
+        function dispararWhatsApp(setor) {
+            var telefone = "5522992777193";
+            var mensagem = "";
+
+            if (setor === "Mesa Corporativa") {
+                mensagem = "🏢 [𝓕𝓘𝓞] • MESA CORPORATIVA\n" +
+                           "----------------------------------------\n" +
+                           "Seja bem-vindo à FIO Investimentos.\n\n" +
+                           "Para realizar o cadastro de sua empresa e dar início ao processo de análise de capital, acesse o painel corporativo digital através do link abaixo:\n" +
+                           "👉 https://t.me\n\n" +
+                           "Caso prefira prosseguir pelo WhatsApp, permaneça nesta conversa. Sua solicitação foi direcionada à nossa fila de atendimento e um de nossos analistas especializados retornará o contato assim que estiver disponível.\n" +
+                           "----------------------------------------";
+            } else {
+                mensagem = "🧵 [𝓕𝓘𝓞] INVESTIMENTOS • PAINEL DO MEMBRO\n" +
+                           "--------------------------------------------------\n" +
+                           "Seja bem-vindo à FIO Investimentos.\n\n" +
+                           "Para acessar o seu Painel do Investidor, consultar os ativos disponíveis e acompanhar seus dividendos em tempo real, utilize o canal digitalizado no link abaixo:\n" +
+                           "👉 https://t.me\n\n" +
+                           "Caso prefira o suporte operacional via WhatsApp, permaneça neste chat. Informamos que o atendimento humano ocorre por ordem de demanda e nossa assessoria entrará em contato em breve.\n" +
+                           "--------------------------------------------------";
+            }
+
+            // O encodeURIComponent do JavaScript formata o texto longo perfeitamente para abrir o App/Web sem quebras
+            var linkFinal = "https://whatsapp.com" + telefone + "&text=" + encodeURIComponent(mensagem);
+            window.location.href = linkFinal;
+        }
+    </script>
 
 </body>
 </html>
