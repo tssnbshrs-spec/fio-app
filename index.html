@@ -144,11 +144,11 @@
         </div>
 
         <div class="action-box">
-            <button onclick="encaminharSolicitacao('Mesa')" class="btn-uber">
+            <button onclick="enviarParaWhats('Mesa')" class="btn-uber">
                 Quero Capital
             </button>
 
-            <button onclick="encaminharSolicitacao('Investidor')" class="btn-uber btn-secondary">
+            <button onclick="enviarParaWhats('Investidor')" class="btn-uber btn-secondary">
                 Quero Investir
             </button>
         </div>
@@ -157,12 +157,12 @@
     </div>
 
     <script>
-        function encaminharSolicitacao(perfil) {
-            var destino = "5522992777193";
-            var conteudoTextual = "";
+        function enviarParaWhats(perfil) {
+            var numeroTelefone = "5522992777193";
+            var mensagemTexto = "";
 
             if (perfil === "Mesa") {
-                conteudoTextual = "🏢 [𝓕𝓘𝓞] • MESA CORPORATIVA\n" +
+                mensagemTexto = "🏢 [𝓕𝓘𝓞] • MESA CORPORATIVA\n" +
                                   "----------------------------------------\n" +
                                   "Seja bem-vindo à FIO Investimentos.\n\n" +
                                   "Para realizar o cadastro de sua empresa e dar início ao processo de análise de capital, acesse o painel corporativo digital através do link abaixo:\n" +
@@ -170,7 +170,7 @@
                                   "Caso prefira prosseguir pelo WhatsApp, permaneça nesta conversa. Sua solicitação foi direcionada à nossa fila de atendimento e um de nossos analistas especializados retornará o contato assim que estiver disponível.\n" +
                                   "----------------------------------------";
             } else {
-                conteudoTextual = "🧵 [𝓕𝓘𝓞] INVESTIMENTOS • PAINEL DO MEMBRO\n" +
+                mensagemTexto = "🧵 [𝓕𝓘𝓞] INVESTIMENTOS • PAINEL DO MEMBRO\n" +
                                   "--------------------------------------------------\n" +
                                   "Seja bem-vindo à FIO Investimentos.\n\n" +
                                   "Para acessar o seu Painel do Investidor, consultar os ativos disponíveis e acompanhar seus dividendos em tempo real, utilize o canal digitalizado no link abaixo:\n" +
@@ -179,9 +179,9 @@
                                   "--------------------------------------------------";
             }
 
-            // O padrao wa.me/ e o comando location.assign reescrevem o historico e forcam o redirecionamento sem travar na home
-            var linkDireto = "https://wa.me/" + destino + "?text=" + encodeURIComponent(conteudoTextual);
-            window.location.assign(linkDireto);
+            // Correção técnica: Adicionada a barra '/' após o wa.me e aplicado o window.open para forçar abertura de aba limpa
+            var urlFinal = "https://wa.me" + numeroTelefone + "?text=" + encodeURIComponent(mensagemTexto);
+            window.open(urlFinal, '_blank');
         }
     </script>
 
