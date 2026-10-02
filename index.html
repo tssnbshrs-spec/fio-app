@@ -144,18 +144,34 @@
         </div>
 
         <div class="action-box">
-            <!-- LINKS UNIVERSAIS E CURTOS COM BARRA '/' PARA EVITAR ERROS DE CACHE DO NAVEGADOR -->
-            <a href="https://wa.me." target="_blank" class="btn-uber">
+            <button onclick="acionarRedirecionamento('Mesa')" class="btn-uber">
                 Quero Capital
-            </a>
+            </button>
 
-            <a href="https://wa.me." target="_blank" class="btn-uber btn-secondary">
+            <button onclick="acionarRedirecionamento('Investidor')" class="btn-uber btn-secondary">
                 Quero Investir
-            </a>
+            </button>
         </div>
 
         <p class="footer-text">© 2026 FIO Investimentos. Conexões operacionais blindadas.</p>
     </div>
+
+    <script>
+        function acionarRedirecionamento(perfil) {
+            var numeroFio = "5522992777193";
+            var textoTratado = "";
+
+            if (perfil === "Mesa") {
+                textoTratado = "Ola! Gostaria de cadastrar minha empresa na Mesa Corporativa FIO.";
+            } else {
+                textoTratado = "Ola! Gostaria de acessar o Painel do Investidor FIO.";
+            }
+
+            // Estrutura wa.me limpa combinada com o assign força quebra do cache do navegador
+            var urlFinal = "https://wa.me/" + numeroFio + "?text=" + encodeURIComponent(textoTratado);
+            window.location.assign(urlFinal);
+        }
+    </script>
 
 </body>
 </html>
