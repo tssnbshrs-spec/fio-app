@@ -144,11 +144,11 @@
         </div>
 
         <div class="action-box">
-            <button onclick="dispararWhatsApp('Mesa Corporativa')" class="btn-uber">
+            <button onclick="encaminharSolicitacao('Mesa')" class="btn-uber">
                 Quero Capital
             </button>
 
-            <button onclick="dispararWhatsApp('Painel do Membro')" class="btn-uber btn-secondary">
+            <button onclick="encaminharSolicitacao('Investidor')" class="btn-uber btn-secondary">
                 Quero Investir
             </button>
         </div>
@@ -157,41 +157,31 @@
     </div>
 
     <script>
-        function dispararWhatsApp(setor) {
-            var telefone = "5522992777193";
-            var mensagem = "";
+        function encaminharSolicitacao(perfil) {
+            var destino = "5522992777193";
+            var conteudoTextual = "";
 
-            if (setor === "Mesa Corporativa") {
-                mensagem = "🏢 [𝓕𝓘𝓞] • MESA CORPORATIVA\n" +
-                           "----------------------------------------\n" +
-                           "Seja bem-vindo à FIO Investimentos.\n\n" +
-                           "Para realizar o cadastro de sua empresa e dar início ao processo de análise de capital, acesse o painel corporativo digital através do link abaixo:\n" +
-                           "👉 https://t.me\n\n" +
-                           "Caso prefira prosseguir pelo WhatsApp, permaneça nesta conversa. Sua solicitação foi direcionada à nossa fila de atendimento e um de nossos analistas especializados retornará o contato assim que estiver disponível.\n" +
-                           "----------------------------------------";
+            if (perfil === "Mesa") {
+                conteudoTextual = "🏢 [𝓕𝓘𝓞] • MESA CORPORATIVA\n" +
+                                  "----------------------------------------\n" +
+                                  "Seja bem-vindo à FIO Investimentos.\n\n" +
+                                  "Para realizar o cadastro de sua empresa e dar início ao processo de análise de capital, acesse o painel corporativo digital através do link abaixo:\n" +
+                                  "👉 https://t.me\n\n" +
+                                  "Caso prefira prosseguir pelo WhatsApp, permaneça nesta conversa. Sua solicitação foi direcionada à nossa fila de atendimento e um de nossos analistas especializados retornará o contato assim que estiver disponível.\n" +
+                                  "----------------------------------------";
             } else {
-                mensagem = "🧵 [𝓕𝓘𝓞] INVESTIMENTOS • PAINEL DO MEMBRO\n" +
-                           "--------------------------------------------------\n" +
-                           "Seja bem-vindo à FIO Investimentos.\n\n" +
-                           "Para acessar o seu Painel do Investidor, consultar os ativos disponíveis e acompanhar seus dividendos em tempo real, utilize o canal digitalizado no link abaixo:\n" +
-                           "👉 https://t.me\n\n" +
-                           "Caso prefira o suporte operacional via WhatsApp, permaneça neste chat. Informamos que o atendimento humano ocorre por ordem de demanda e nossa assessoria entrará em contato em breve.\n" +
-                           "--------------------------------------------------";
+                conteudoTextual = "🧵 [𝓕𝓘𝓞] INVESTIMENTOS • PAINEL DO MEMBRO\n" +
+                                  "--------------------------------------------------\n" +
+                                  "Seja bem-vindo à FIO Investimentos.\n\n" +
+                                  "Para acessar o seu Painel do Investidor, consultar os ativos disponíveis e acompanhar seus dividendos em tempo real, utilize o canal digitalizado no link abaixo:\n" +
+                                  "👉 https://t.me\n\n" +
+                                  "Caso prefira o suporte operacional via WhatsApp, permaneça neste chat. Informamos que o atendimento humano ocorre por ordem de demanda e nossa assessoria entrará em contato em breve.\n" +
+                                  "--------------------------------------------------";
             }
 
-            // Identifica se o usuario esta no computador ou no celular
-            var esMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            var urlFinal = "";
-
-            if (esMobile) {
-                // Link universal ideal para smartphones (Abre o app direto)
-                urlFinal = "https://wa.me" + telefone + "?text=" + encodeURIComponent(mensagem);
-            } else {
-                // Link ideal para computadores (Pula a tela inicial do site institucional e vai pro Web chat)
-                urlFinal = "https://whatsapp.com" + telefone + "&text=" + encodeURIComponent(mensagem);
-            }
-
-            window.open(urlFinal, '_blank');
+            // O padrao wa.me/ e o comando location.assign reescrevem o historico e forcam o redirecionamento sem travar na home
+            var linkDireto = "https://wa.me/" + destino + "?text=" + encodeURIComponent(conteudoTextual);
+            window.location.assign(linkDireto);
         }
     </script>
 
