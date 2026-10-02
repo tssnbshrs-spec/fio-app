@@ -85,7 +85,7 @@
             gap: 16px;
         }
 
-        /* Botoes Estilo Uber */
+        /* Botoes Estilo Uber Convertidos para Links Nativos */
         .btn-uber { 
             display: flex;
             align-items: center;
@@ -101,6 +101,7 @@
             transition: background-color 0.2s, transform 0.1s;
             border: none;
             width: 100%;
+            box-sizing: border-box;
             cursor: pointer;
         }
 
@@ -143,50 +144,18 @@
         </div>
 
         <div class="action-box">
-            <!-- Chamada global direta via window para evitar conflitos de escopo -->
-            <button onclick="window.processarEnvioFio('Quero Capital')" class="btn-uber">
+            <!-- LINKS DIRETOS E PRÉ-COMPILADOS CONTRA TRAVAMENTOS -->
+            <a href="https://whatsapp.com" class="btn-uber">
                 Quero Capital
-            </button>
+            </a>
 
-            <button onclick="window.processarEnvioFio('Quero Investir')" class="btn-uber btn-secondary">
+            <a href="https://whatsapp.com" class="btn-uber btn-secondary">
                 Quero Investir
-            </button>
+            </a>
         </div>
 
         <p class="footer-text">© 2026 FIO Investimentos. Conexões operacionais blindadas.</p>
     </div>
-
-    <script>
-        // Declaracao explicita na janela global para forcar a atualizacao do navegador
-        window.processarEnvioFio = function(tipo) {
-            var numero = "5522992777193"; 
-            var texto = "";
-
-            var linkTelegramEmpresa = "https://t.me"; 
-            var linkTelegramInvestidor = "https://t.me";
-
-            if (tipo === "Quero Capital") {
-                texto = "🏢 [𝓕𝓘𝓞] • MESA CORPORATIVA\n" +
-                        "----------------------------------------\n" +
-                        "Seja bem-vindo à FIO Investimentos.\n\n" +
-                        "Para realizar o cadastro de sua empresa e dar início ao processo de análise de capital, acesse o painel corporativo digital através do link abaixo:\n" +
-                        "👉 " + linkTelegramEmpresa + "\n\n" +
-                        "Caso prefira prosseguir pelo WhatsApp, permaneça nesta conversa. Sua solicitação foi direcionada à nossa fila de atendimento e um de nossos analistas especializados retornará o contato assim que estiver disponível.\n" +
-                        "----------------------------------------";
-            } else {
-                texto = "🧵 [𝓕𝓘𝓞] INVESTIMENTOS • PAINEL DO MEMBRO\n" +
-                        "--------------------------------------------------\n" +
-                        "Seja bem-vindo à FIO Investimentos.\n\n" +
-                        "Para acessar o seu Painel do Investidor, consultar os ativos disponíveis e acompanhar seus dividendos em tempo real, utilize o canal digitalizado no link abaixo:\n" +
-                        "👉 " + linkTelegramInvestidor + "\n\n" +
-                        "Caso prefira o suporte operacional via WhatsApp, permaneça neste chat. Informamos que o atendimento humano ocorre por ordem de demanda e nossa assessoria entrará em contato em breve.\n" +
-                        "--------------------------------------------------";
-            }
-
-            var urlFinal = "https://whatsapp.com" + numero + "&text=" + encodeURIComponent(texto);
-            window.location.href = urlFinal;
-        };
-    </script>
 
 </body>
 </html>
