@@ -144,11 +144,11 @@
         </div>
 
         <div class="action-box">
-            <button onclick="acionarRedirecionamento('Mesa')" class="btn-uber">
+            <button onclick="dispararFluxoFio('Mesa')" class="btn-uber">
                 Quero Capital
             </button>
 
-            <button onclick="acionarRedirecionamento('Investidor')" class="btn-uber btn-secondary">
+            <button onclick="dispararFluxoFio('Investidor')" class="btn-uber btn-secondary">
                 Quero Investir
             </button>
         </div>
@@ -157,19 +157,34 @@
     </div>
 
     <script>
-        function acionarRedirecionamento(perfil) {
-            var numeroFio = "5522992777193";
-            var textoTratado = "";
+        function dispararFluxoFio(perfil) {
+            var destinoWhatsApp = "5522992777193";
+            var mensagemMontada = "";
+
+            var linkCnpj = "https://t.me";
+            var linkInvestidor = "https://t.me";
 
             if (perfil === "Mesa") {
-                textoTratado = "Ola! Gostaria de cadastrar minha empresa na Mesa Corporativa FIO.";
+                mensagemMontada = "🏢 [𝓕𝓘𝓞] • MESA CORPORATIVA\n" +
+                                  "----------------------------------------\n" +
+                                  "Seja bem-vindo à FIO Investimentos.\n\n" +
+                                  "Para realizar o cadastro de sua empresa e dar início ao processo de análise de capital, acesse o painel corporativo digital através do link abaixo:\n" +
+                                  "👉 " + linkCnpj + "\n\n" +
+                                  "Caso prefira prosseguir pelo WhatsApp, permaneça nesta conversa. Sua solicitação foi direcionada à nossa fila de atendimento e um de nossos analistas especializados retornará o contato assim que estiver disponível.\n" +
+                                  "----------------------------------------";
             } else {
-                textoTratado = "Ola! Gostaria de acessar o Painel do Investidor FIO.";
+                mensagemMontada = "🧵 [𝓕𝓘𝓞] INVESTIMENTOS • PAINEL DO MEMBRO\n" +
+                                  "--------------------------------------------------\n" +
+                                  "Seja bem-vindo à FIO Investimentos.\n\n" +
+                                  "Para acessar o seu Painel do Investidor, consultar os ativos disponíveis e acompanhar seus dividendos em tempo real, utilize o canal digitalizado no link abaixo:\n" +
+                                  "👉 " + linkInvestidor + "\n\n" +
+                                  "Caso prefira o suporte operacional via WhatsApp, permaneça neste chat. Informamos que o atendimento humano ocorre por ordem de demanda e nossa assessoria entrará em contato em breve.\n" +
+                                  "--------------------------------------------------";
             }
 
-            // Estrutura wa.me limpa combinada com o assign força quebra do cache do navegador
-            var urlFinal = "https://wa.me/" + numeroFio + "?text=" + encodeURIComponent(textoTratado);
-            window.location.assign(urlFinal);
+            // O encodeURIComponent aliado a wa.me trata o texto longo evitando o bloqueio 4xx Client Error no computador
+            var rotaFinal = "https://wa.me" + destinoWhatsApp + "?text=" + encodeURIComponent(mensagemMontada);
+            window.location.assign(rotaFinal);
         }
     </script>
 
