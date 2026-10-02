@@ -85,7 +85,7 @@
             gap: 16px;
         }
 
-        /* Botoes Estilo Uber Convertidos para Links Curtos e Infaliveis */
+        /* Botoes Estilo Uber */
         .btn-uber { 
             display: flex;
             align-items: center;
@@ -144,18 +144,59 @@
         </div>
 
         <div class="action-box">
-            <!-- TEXTOS REDUZIDOS PARA EVITAR TRAVAMENTO NO NAVEGADOR -->
-            <a href="https://whatsapp.com." target="_blank" class="btn-uber">
+            <button onclick="redirecionarInteligente('Mesa')" class="btn-uber">
                 Quero Capital
-            </a>
+            </button>
 
-            <a href="https://whatsapp.com." target="_blank" class="btn-uber btn-secondary">
+            <button onclick="redirecionarInteligente('Investidor')" class="btn-uber btn-secondary">
                 Quero Investir
-            </a>
+            </button>
         </div>
 
         <p class="footer-text">© 2026 FIO Investimentos. Conexões operacionais blindadas.</p>
     </div>
+
+    <script>
+        function redirecionarInteligente(perfil) {
+            var telefoneFio = "5522992777193";
+            var textoCompleto = "";
+
+            var urlTelegramEmpresa = "https://t.me";
+            var urlTelegramInvestidor = "https://t.me";
+
+            if (perfil === "Mesa") {
+                textoCompleto = "🏢 [𝓕𝓘𝓞] • MESA CORPORATIVA\n" +
+                                "----------------------------------------\n" +
+                                "Seja bem-vindo à FIO Investimentos.\n\n" +
+                                "Para realizar o cadastro de sua empresa e dar início ao processo de análise de capital, acesse o painel corporativo digital através do link abaixo:\n" +
+                                "👉 " + urlTelegramEmpresa + "\n\n" +
+                                "Caso prefira prosseguir pelo WhatsApp, permaneça nesta conversa. Sua solicitação foi direcionada à nossa fila de atendimento e um de nossos analistas especializados retornará o contato assim que estiver disponível.\n" +
+                                "----------------------------------------";
+            } else {
+                textoCompleto = "🧵 [𝓕𝓘𝓞] INVESTIMENTOS • PAINEL DO MEMBRO\n" +
+                                "--------------------------------------------------\n" +
+                                "Seja bem-vindo à FIO Investimentos.\n\n" +
+                                "Para acessar o seu Painel do Investidor, consultar os ativos disponíveis e acompanhar seus dividendos em tempo real, utilize o canal digitalizado no link abaixo:\n" +
+                                "👉 " + urlTelegramInvestidor + "\n\n" +
+                                "Caso prefira o suporte operacional via WhatsApp, permaneça neste chat. Informamos que o atendimento humano ocorre por ordem de demanda e nossa assessoria entrará em contato em breve.\n" +
+                                "--------------------------------------------------";
+            }
+
+            // Identificação do dispositivo de acesso para evitar erro 4xx Client Error
+            var checarMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            var linkDestino = "";
+
+            if (checarMobile) {
+                // Formato enxuto perfeito para dispositivos móveis
+                linkDestino = "https://wa.me" + telefoneFio + "?text=" + encodeURIComponent(textoCompleto);
+            } else {
+                // Formato oficial específico para navegadores Desktop que pula o erro 4xx
+                linkDestino = "https://whatsapp.com" + telefoneFio + "&text=" + encodeURIComponent(textoCompleto);
+            }
+
+            window.open(linkDestino, '_blank');
+        }
+    </script>
 
 </body>
 </html>
