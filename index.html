@@ -143,12 +143,12 @@
         </div>
 
         <div class="action-box">
-            <!-- BOTOES COM CHAMADA VIA JAVASCRIPT -->
-            <button onclick="enviarMensagem('Quero Capital')" class="btn-uber">
+            <!-- FUNÇÃO EXPLICITAMENTE CONECTADA AO SCRIPT -->
+            <button onclick="enviarMensagemCorporativa('Quero Capital')" class="btn-uber">
                 Quero Capital
             </button>
 
-            <button onclick="enviarMensagem('Quero Investir')" class="btn-uber btn-secondary">
+            <button onclick="enviarMensagemCorporativa('Quero Investir')" class="btn-uber btn-secondary">
                 Quero Investir
             </button>
         </div>
@@ -157,11 +157,11 @@
     </div>
 
     <script>
-        function enviarMensagem(tipo) {
+        function enviarMensagemCorporativa(tipo) {
             var numero = "5522992777193"; 
             var texto = "";
 
-            // Links operacionais dos painéis digitais da FIO homologados via Telegram
+            // Links operacionais homologados via Telegram
             var linkTelegramEmpresa = "https://t.me"; 
             var linkTelegramInvestidor = "https://t.me";
 
@@ -183,7 +183,6 @@
                         "--------------------------------------------------";
             }
 
-            // O link monta a API global injetando o texto formal estruturado
             var urlFinal = "https://whatsapp.com" + numero + "&text=" + encodeURIComponent(texto);
             window.location.href = urlFinal;
         }
