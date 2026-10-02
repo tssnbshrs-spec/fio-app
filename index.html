@@ -144,18 +144,39 @@
         </div>
 
         <div class="action-box">
-            <!-- LINKS JÁ CONFIGURADOS COM A BARRA OBRIGATÓRIA '/' E SEM DEPENDER DE JAVASCRIPT -->
-            <a href="https://wa.me." target="_blank" class="btn-uber">
+            <!-- FUNÇÕES MAPEADAS DIRETAMENTE PARA O SCRIPT -->
+            <button onclick="executarEnvioLimpo('Mesa')" class="btn-uber">
                 Quero Capital
-            </a>
+            </button>
 
-            <a href="https://wa.me." target="_blank" class="btn-uber btn-secondary">
+            <button onclick="executarEnvioLimpo('Investidor')" class="btn-uber btn-secondary">
                 Quero Investir
-            </a>
+            </button>
         </div>
 
         <p class="footer-text">© 2026 FIO Investimentos. Conexões operacionais blindadas.</p>
     </div>
+
+    <script>
+        function executarEnvioLimpo(tipoPerfil) {
+            var destinoMesa = "5522992777193";
+            var fraseEnvio = "";
+
+            if (tipoPerfil === "Mesa") {
+                fraseEnvio = "Ola! Gostaria de cadastrar minha empresa na Mesa Corporativa FIO.";
+            } else {
+                fraseEnvio = "Ola! Gostaria de acessar o Painel do Investidor FIO.";
+            }
+
+            // Usar o formato de API direto impede que o navegador insira pontos '.' fantasmas no domínio e trave a requisição
+            var urlTratadaSemCache = "https://whatsapp.com" + destinoMesa + "&text=" + encodeURIComponent(fraseEnvio);
+            
+            // Força a abertura em nova janela limpa limpando referenciadores de histórico antigos
+            var novaJanela = window.open();
+            novaJanela.opener = null;
+            novaJanela.location = urlTratadaSemCache;
+        }
+    </script>
 
 </body>
 </html>
