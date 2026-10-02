@@ -179,9 +179,19 @@
                            "--------------------------------------------------";
             }
 
-            // O encodeURIComponent do JavaScript formata o texto longo perfeitamente para abrir o App/Web sem quebras
-            var linkFinal = "https://whatsapp.com" + telefone + "&text=" + encodeURIComponent(mensagem);
-            window.location.href = linkFinal;
+            // Identifica se o usuario esta no computador ou no celular
+            var esMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            var urlFinal = "";
+
+            if (esMobile) {
+                // Link universal ideal para smartphones (Abre o app direto)
+                urlFinal = "https://wa.me" + telefone + "?text=" + encodeURIComponent(mensagem);
+            } else {
+                // Link ideal para computadores (Pula a tela inicial do site institucional e vai pro Web chat)
+                urlFinal = "https://whatsapp.com" + telefone + "&text=" + encodeURIComponent(mensagem);
+            }
+
+            window.open(urlFinal, '_blank');
         }
     </script>
 
