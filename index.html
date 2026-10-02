@@ -85,7 +85,7 @@
             gap: 16px;
         }
 
-        /* Botoes Estilo Uber Convertidos para Links Diretos Universais */
+        /* Botoes Estilo Uber */
         .btn-uber { 
             display: flex;
             align-items: center;
@@ -144,18 +144,44 @@
         </div>
 
         <div class="action-box">
-            <!-- LINKS DIRETOS PARA O CHAT SEM TEXTO EMBUTIDO PARA ELIMINAR O ERRO 4XX DE UMA VEZ POR TODAS -->
-            <a href="https://wa.me" target="_blank" class="btn-uber">
+            <button onclick="redirecionarFio('Mesa')" class="btn-uber">
                 Quero Capital
-            </a>
+            </button>
 
-            <a href="https://wa.me" target="_blank" class="btn-uber btn-secondary">
+            <button onclick="redirecionarFio('Investidor')" class="btn-uber btn-secondary">
                 Quero Investir
-            </a>
+            </button>
         </div>
 
         <p class="footer-text">© 2026 FIO Investimentos. Conexões operacionais blindadas.</p>
     </div>
+
+    <script>
+        function redirecionarFio(perfil) {
+            var numeroDestino = "5522992777193";
+            var mensagemFormatada = "";
+
+            if (perfil === "Mesa") {
+                mensagemFormatada = "Olá! Gostaria de cadastrar minha empresa na Mesa Corporativa FIO.";
+            } else {
+                mensagemFormatada = "Olá! Gostaria de acessar o Painel do Investidor FIO.";
+            }
+
+            // Detecta se o usuario está acessando por celular ou computador
+            var dispositivoMovel = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            var urlDestinoFinal = "";
+
+            if (dispositivoMovel) {
+                // Abre direto no aplicativo do celular
+                urlDestinoFinal = "https://wa.me" + numeroDestino + "?text=" + encodeURIComponent(mensagemFormatada);
+            } else {
+                // Pula a tela do botao verde no computador e carrega o WhatsApp Web direto
+                urlDestinoFinal = "https://whatsapp.com" + numeroDestino + "&text=" + encodeURIComponent(mensagemFormatada);
+            }
+
+            window.open(urlDestinoFinal, '_blank');
+        }
+    </script>
 
 </body>
 </html>
